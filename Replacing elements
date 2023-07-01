@@ -1,0 +1,24 @@
+import re
+
+def replace_hardcoded_elements(text, placeholder):
+    hardcoded_elements = re.findall(r'\"(.*?)\"', text)
+    for element in hardcoded_elements:
+        replacement_text = text.replace(element, placeholder)
+        text = replacement_text
+    return text
+
+if __name__ == "__main__":
+    template = '''
+    <html>
+        <body>
+            <h1>Welcome!</h1>
+            <p>You can register by "30th of June".</p>
+            <p>Please note the deadline and complete your registration.</p>
+        </body>
+    </html>
+    '''
+
+    placeholder = "REGISTRATION_DATE"
+
+    updated_template = replace_hardcoded_elements(template, placeholder)
+    print(updated_template)
